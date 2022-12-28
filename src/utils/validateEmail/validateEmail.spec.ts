@@ -7,4 +7,11 @@ describe("Validade Email function", () => {
 
     expect(validate).toBe(true);
   });
+
+  test("should return false if email isn't valid on regEx test", () => {
+    const email = "beneditoura";
+    const validate = validateEmail(email);
+
+    expect(validate).toBe(false);
+  });
 });
