@@ -9,4 +9,15 @@ describe("fakeLogin function", () => {
 
     await expect(fakeLogin(loginData)).resolves.toBe(true);
   });
+
+  test("should reject promise if email and password are wrong", async () => {
+    const loginData = {
+      email: "",
+      password: "password1",
+    };
+
+    await expect(fakeLogin(loginData)).rejects.toMatchObject({
+      error: "e-mail or password wrong.",
+    });
+  });
 });
