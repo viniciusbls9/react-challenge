@@ -1,3 +1,5 @@
+import validateEmail from "./validateEmail";
+
 describe("Validade Email function", () => {
   test("should return true if email is valid on regEx test", () => {
     const email = "beneditoura@gmail.com";
@@ -6,7 +8,3 @@ describe("Validade Email function", () => {
     expect(validate).toBe(true);
   });
 });
-
-function validateEmail(email: string) {
-  return true;
-}
