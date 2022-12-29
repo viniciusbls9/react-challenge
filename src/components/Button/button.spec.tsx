@@ -20,4 +20,16 @@ describe("Button component", () => {
 
     expect(mockFunction).toBeCalled();
   });
+
+  test("should to disabled Button component", async () => {
+    const mockFunction = jest.fn();
+
+    const { getByText } = render(
+      <Button label="Login" onClick={mockFunction} disabled />
+    );
+
+    await userEvent.click(getByText(/login/i));
+
+    expect(mockFunction).not.toBeCalled();
+  });
 });
