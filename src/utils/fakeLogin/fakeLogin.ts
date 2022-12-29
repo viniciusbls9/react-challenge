@@ -1,4 +1,4 @@
-import validateEmail from "../validateEmail/validateEmail";
+import { validateEmail } from "../validateFunctions//validateFunctions";
 
 interface FakeLoginProps {
   email: string;
