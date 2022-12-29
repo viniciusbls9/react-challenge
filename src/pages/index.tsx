@@ -1,6 +1,6 @@
-// import { login } from "./utils";
-import "./index.css";
+import { fakeLogin } from "../utils/fakeLogin/fakeLogin";
 import { useState } from "react";
+import Button from "../components/Button";
 
 // Instruções:
 // * Você tem um formulário de login INCOMPLETO
@@ -31,7 +31,7 @@ export default function LoginForm() {
         </div>
 
         <div className="button">
-          <button>Login</button>
+          <Button label="Login" />
         </div>
       </div>
     </div>
