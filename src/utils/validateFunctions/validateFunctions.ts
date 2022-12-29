@@ -12,4 +12,6 @@ export function validatePassword(password: string) {
   );
 
   if (regEx.test(password)) return true;
+
+  return false;
 }
