@@ -1,4 +1,7 @@
-import { validateEmail } from "../validateFunctions//validateFunctions";
+import {
+  validateEmail,
+  validatePassword,
+} from "../validateFunctions/validateFunctions";
 
 interface FakeLoginProps {
   email: string;
@@ -10,7 +13,7 @@ export function fakeLogin({ email, password }: FakeLoginProps) {
 
   return new Promise((resolve, reject) => {
     setTimeout(function () {
-      if (password === "password123" && validateEmail(email)) {
+      if (validatePassword(password) && validateEmail(email)) {
         resolve(true);
       } else {
         reject({ error: "e-mail or password wrong." });
