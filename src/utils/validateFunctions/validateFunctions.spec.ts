@@ -23,4 +23,11 @@ describe("Validade Password function", () => {
 
     expect(validate).toBe(true);
   });
+
+  test("should return false if password isn't valid on regEx test", () => {
+    const password = "oi";
+    const validate = validatePassword(password);
+
+    expect(validate).toBe(false);
+  });
 });
