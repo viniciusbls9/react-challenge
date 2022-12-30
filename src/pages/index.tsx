@@ -36,26 +36,17 @@ export default function LoginForm() {
     setButtonDisabled(true);
     try {
       if (
-        validateEmail(loginData.email) &&
-        validatePassword(loginData.password)
+        !validateEmail(loginData.email) ||
+        !validatePassword(loginData.password)
       ) {
-        await fakeLogin(loginData);
+        return;
       }
+      await fakeLogin(loginData);
     } catch (error) {
     } finally {
       setButtonDisabled(false);
     }
   };
-
-  const disabledButton = useMemo(() => {
-    if (
-      !validateEmail(loginData.email) ||
-      !validatePassword(loginData.password)
-    ) {
-      return true;
-    }
-    return false;
-  }, [loginData.email, loginData.password, fakeLogin]);
 
   return (
     <div className="wrapper">
@@ -87,7 +78,7 @@ export default function LoginForm() {
           <Button
             label="Login"
             onClick={() => handleLogin()}
-            disabled={disabledButton || buttonDisabled}
+            disabled={buttonDisabled}
           />
         </div>
       </div>
