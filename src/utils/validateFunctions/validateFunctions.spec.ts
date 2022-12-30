@@ -14,6 +14,13 @@ describe("Validade Email function", () => {
 
     expect(validate).toBe(false);
   });
+
+  test("should return false if email is empty", () => {
+    const email = "";
+    const validate = validateEmail(email);
+
+    expect(validate).toBe(false);
+  });
 });
 
 describe("Validade Password function", () => {
