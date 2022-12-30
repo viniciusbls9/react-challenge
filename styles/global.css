@@ -60,6 +60,13 @@ button:hover {
 button:active {
   border-color: #646cff;
 }
+button:disabled {
+  color: #ccc;
+}
+button:disabled:hover {
+  color: #ccc;
+  cursor: not-allowed;
+}
 label {
   display: block;
 }
