@@ -18,29 +18,26 @@ export default function LoginForm() {
     email: "",
     password: "",
   });
-  const [buttonDisabled, setButtonDisabled] = useState(false);
+  const [buttonDisabled, setButtonDisabled] = useState(true);
 
-  const handleEmailField = (event: ChangeEvent<HTMLInputElement>) => {
-    const value = event.target?.value;
+  const handleLoginFields = (
+    event: ChangeEvent<HTMLInputElement>,
+    field: string
+  ) => {
+    const { value } = event.target;
 
-    setLoginData({ ...loginData, email: value });
-  };
+    setLoginData({ ...loginData, [field]: value });
 
-  const handlePasswordField = (event: ChangeEvent<HTMLInputElement>) => {
-    const value = event.target?.value;
-
-    setLoginData({ ...loginData, password: value });
+    if (validateEmail(loginData.email)) {
+      setButtonDisabled(false);
+      return;
+    }
+    setButtonDisabled(true);
   };
 
   const handleLogin = async () => {
     setButtonDisabled(true);
     try {
-      if (
-        !validateEmail(loginData.email) ||
-        !validatePassword(loginData.password)
-      ) {
-        return;
-      }
       await fakeLogin(loginData);
     } catch (error) {
     } finally {
@@ -52,15 +49,15 @@ export default function LoginForm() {
     <div className="wrapper">
       <div className="login-form">
         <h1>Login Form 🐞</h1>
-        {/* Coloque a mensagem de erro de login na div abaixo. Mostre a div somente se houver uma mensagem de erro. */}
-        <div className="errorMessage"></div>
+        <span>{loginData.email}</span>
         <div className="row">
           <label htmlFor={"email"}>Email</label>
           <input
             id={"email"}
             type={"email"}
+            placeholder="email"
             value={loginData.email}
-            onChange={handleEmailField}
+            onChange={(event) => handleLoginFields(event, "email")}
             autoComplete="off"
           />
         </div>
@@ -69,8 +66,9 @@ export default function LoginForm() {
           <input
             id={"password"}
             type={"password"}
+            placeholder="password"
             value={loginData.password}
-            onChange={handlePasswordField}
+            onChange={(event) => handleLoginFields(event, "password")}
           />
         </div>
 
